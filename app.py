@@ -23,7 +23,11 @@ app = FastAPI(title="Nalanda Nexus AI - Exoplanet API", version="1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:8080", "http://localhost:8080"],
+    allow_origins=[
+        "https://www.nalandanexusai.work",      # your custom domain
+        "https://nalandanexusai.work",
+        "https://<your-gh-username>.github.io", # your GitHub Pages root
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -308,3 +312,4 @@ async def predict_batch(
         print("🚨 Error during /api/predict-batch:", e)
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
+
